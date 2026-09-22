@@ -1,10 +1,10 @@
-# Aerolínea Virtual ✈️
+# Aerolínea Virtual
 
-Aplicación web para la gestión de una **Aerolínea Virtual**, desarrollada como parte del laboratorio del curso **Fundamentos de Sistemas de Información** (Universidad de Antioquia). La solución está construida utilizando el framework **JHipster 9.4.0**, integrando un backend con **Spring Boot**, base de datos relacional **MySQL** gestionada con **Liquibase**, un frontend moderno con **Angular**, y contenedorización completa mediante **Docker**.
+Aplicación web para la gestión de una Aerolínea Virtual, desarrollada como parte del laboratorio del curso Fundamentos de Sistemas de Información (Universidad de Antioquia). La solución está construida utilizando el framework JHipster 9.4.0, integrando un backend con Spring Boot, base de datos relacional MySQL gestionada con Liquibase, un frontend con Angular, y contenedorización completa mediante Docker.
 
 ---
 
-## 📋 Modelo de Dominio y Entidades
+## Modelo de Dominio y Entidades
 
 La aplicación modela las operaciones clave de reservas y gestión de vuelos para una aerolínea mediante las siguientes entidades y relaciones:
 
@@ -20,7 +20,7 @@ La aplicación modela las operaciones clave de reservas y gestión de vuelos par
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 - **Backend:** Java 17+, Spring Boot, Spring Security (JWT), Spring Data JPA, Maven.
 - **Frontend:** Angular, TypeScript, HTML5, SCSS, Bootstrap.
@@ -30,7 +30,7 @@ La aplicación modela las operaciones clave de reservas y gestión de vuelos par
 
 ---
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 - `src/main/java/`: Código fuente del backend (controladores REST, servicios, repositorios, entidades JPA y configuración de seguridad).
 - `src/main/resources/`: Configuraciones de Spring (`application.yml`), migraciones de base de datos de Liquibase (`config/liquibase/`) y plantillas de correo.
@@ -40,13 +40,13 @@ La aplicación modela las operaciones clave de reservas y gestión de vuelos par
 
 ---
 
-## 🚀 Puesta en Marcha (Entorno de Desarrollo)
+## Puesta en Marcha (Entorno de Desarrollo)
 
 ### 1. Requisitos Previos
 
-- **Java 17** o superior instalado.
-- **Node.js** (LTS) y **npm**.
-- **Docker Desktop** en ejecución.
+- Java 17 o superior instalado.
+- Node.js (LTS) y npm.
+- Docker Desktop en ejecución.
 
 ---
 
@@ -58,7 +58,7 @@ Para levantar la base de datos MySQL en segundo plano:
 docker-compose -f src/main/docker/mysql.yml up -d
 ```
 
-_(O con Docker Compose v2)_:
+O con Docker Compose v2:
 
 ```bash
 docker compose -f src/main/docker/mysql.yml up -d
@@ -79,7 +79,7 @@ Ejecuta el servidor backend con el wrapper de Maven:
   .\mvnw.cmd
   ```
 
-El servicio REST estará disponible en: [http://localhost:8080](http://localhost:8080)
+El servicio REST estará disponible en: http://localhost:8080
 
 ---
 
@@ -92,11 +92,11 @@ npm install
 npm start
 ```
 
-La aplicación web estará disponible en: [http://localhost:9000](http://localhost:9000) (con proxy configurado hacia el backend en el puerto 8080).
+La aplicación web estará disponible en: http://localhost:9000 (con proxy configurado hacia el backend en el puerto 8080).
 
 ---
 
-## 🐳 Despliegue Completo con Docker
+## Despliegue Completo con Docker
 
 Si deseas construir la imagen de producción de la aplicación y ejecutar todo el entorno (Aplicación + Base de Datos) mediante Docker Compose:
 
@@ -118,11 +118,11 @@ docker compose -f src/main/docker/app.yml up -d
 docker compose -f src/main/docker/app.yml ps
 ```
 
-Accede a la aplicación en: [http://localhost:8080](http://localhost:8080)
+Acceso a la aplicación en: http://localhost:8080
 
 ---
 
-## 🧪 Ejecución de Pruebas
+## Ejecución de Pruebas
 
 - **Pruebas del Backend (JUnit / Spring Boot):**
 
@@ -137,7 +137,7 @@ Accede a la aplicación en: [http://localhost:8080](http://localhost:8080)
 
 ---
 
-## 🔐 Usuarios por Defecto (Entorno de Desarrollo)
+## Usuarios por Defecto (Entorno de Desarrollo)
 
 | Usuario | Contraseña | Rol / Permisos                                                |
 | :------ | :--------- | :------------------------------------------------------------ |
@@ -146,7 +146,7 @@ Accede a la aplicación en: [http://localhost:8080](http://localhost:8080)
 
 ---
 
-## 📄 Licencia y Créditos
+## Licencia y Créditos
 
 Proyecto desarrollado para la asignatura **Fundamentos de Sistemas de Información** de la **Universidad de Antioquia**.
 Generado y adaptado con [JHipster](https://www.jhipster.tech/).
