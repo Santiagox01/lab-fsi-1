@@ -1,0 +1,16 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "baseName": "aerolineaVirtual",
+    "buildTool": "maven",
+    "creationTimestamp": 1701927031317,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "entities": [],
+    "jhipsterVersion": "9.4.0",
+    "jwtSecretKey": "MzZiMTQ5OTY1NGQyMTMxNTI0ZjAzZjAxZDVmOTEyZTUxYTA4ZTFhYmVhYmY3M2JjZmVkY2ZlNjljZTEwYTIxODJmYTg1OTM2ZGFhMDEzMTE5MTM2MDJkOGU5NjlhMjk5NTkyOTA2NzVhM2VlZmQxNzkzMDQ4NDY0YzJmNTFhYTk=",
+    "languages": ["en"],
+    "nativeLanguage": "en",
+    "prodDatabaseType": "mysql"
+  }
+}
