@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (pasajero(); as pasajeroRef) {
+      <div>
+        <h2 data-cy="pasajeroDetailsHeading"><span jhiTranslate="aerolineaVirtualApp.pasajero.detail.title">Pasajero</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ pasajeroRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="aerolineaVirtualApp.pasajero.nombre">Nombre</span></dt>
+          <dd>
+            <span>{{ pasajeroRef.nombre }}</span>
+          </dd>
+          <dt><span jhiTranslate="aerolineaVirtualApp.pasajero.apellido">Apellido</span></dt>
+          <dd>
+            <span>{{ pasajeroRef.apellido }}</span>
+          </dd>
+          <dt><span jhiTranslate="aerolineaVirtualApp.pasajero.email">Email</span></dt>
+          <dd>
+            <span>{{ pasajeroRef.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="aerolineaVirtualApp.pasajero.telefono">Telefono</span></dt>
+          <dd>
+            <span>{{ pasajeroRef.telefono }}</span>
+          </dd>
+          <dt><span jhiTranslate="aerolineaVirtualApp.pasajero.fechaNacimiento">Fecha Nacimiento</span></dt>
+          <dd>
+            <span>{{ pasajeroRef.fechaNacimiento | formatMediumDate }}</span>
+          </dd>
+        </dl>
+
+        <button type="button" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left" />&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/pasajero', pasajeroRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt" />&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

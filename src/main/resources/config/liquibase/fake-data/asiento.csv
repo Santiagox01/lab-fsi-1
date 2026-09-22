@@ -1,0 +1,31 @@
+id;numero;clase;disponible
+1;1A;Primera Clase;true
+2;1B;Primera Clase;true
+3;1C;Primera Clase;false
+4;2A;Primera Clase;true
+5;2B;Primera Clase;false
+6;3A;Ejecutiva;true
+7;3B;Ejecutiva;true
+8;3C;Ejecutiva;false
+9;4A;Ejecutiva;true
+10;4B;Ejecutiva;false
+11;10A;Economica;true
+12;10B;Economica;true
+13;10C;Economica;false
+14;11A;Economica;true
+15;11B;Economica;true
+16;11C;Economica;false
+17;12A;Economica;true
+18;12B;Economica;false
+19;13A;Economica;true
+20;13B;Economica;true
+21;14A;Economica;false
+22;14B;Economica;true
+23;15A;Economica;true
+24;15B;Economica;false
+25;16A;Economica;true
+26;16B;Economica;true
+27;17A;Economica;false
+28;17B;Economica;true
+29;18A;Economica;true
+30;18B;Economica;false

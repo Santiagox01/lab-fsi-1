@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (vuelo(); as vueloRef) {
+      <div>
+        <h2 data-cy="vueloDetailsHeading"><span jhiTranslate="aerolineaVirtualApp.vuelo.detail.title">Vuelo</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ vueloRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="aerolineaVirtualApp.vuelo.numeroVuelo">Numero Vuelo</span></dt>
+          <dd>
+            <span>{{ vueloRef.numeroVuelo }}</span>
+          </dd>
+          <dt><span jhiTranslate="aerolineaVirtualApp.vuelo.origen">Origen</span></dt>
+          <dd>
+            <span>{{ vueloRef.origen }}</span>
+          </dd>
+          <dt><span jhiTranslate="aerolineaVirtualApp.vuelo.destino">Destino</span></dt>
+          <dd>
+            <span>{{ vueloRef.destino }}</span>
+          </dd>
+          <dt><span jhiTranslate="aerolineaVirtualApp.vuelo.fechaSalida">Fecha Salida</span></dt>
+          <dd>
+            <span>{{ vueloRef.fechaSalida | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="aerolineaVirtualApp.vuelo.fechaLlegada">Fecha Llegada</span></dt>
+          <dd>
+            <span>{{ vueloRef.fechaLlegada | formatMediumDatetime }}</span>
+          </dd>
+        </dl>
+
+        <button type="button" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left" />&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/vuelo', vueloRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt" />&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

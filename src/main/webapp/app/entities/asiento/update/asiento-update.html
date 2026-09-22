@@ -1,0 +1,82 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-asiento-heading" data-cy="AsientoCreateUpdateHeading" jhiTranslate="aerolineaVirtualApp.asiento.home.createOrEditLabel">
+        Create or edit a Asiento
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="global.field.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let numeroRef = editForm.get('numero')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_numero" jhiTranslate="aerolineaVirtualApp.asiento.numero">Numero</label>
+          <input type="text" class="form-control" name="numero" id="field_numero" data-cy="numero" formControlName="numero" />
+          @if (numeroRef.invalid && (numeroRef.dirty || numeroRef.touched)) {
+            <div>
+              @if (numeroRef.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let claseRef = editForm.get('clase')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_clase" jhiTranslate="aerolineaVirtualApp.asiento.clase">Clase</label>
+          <input type="text" class="form-control" name="clase" id="field_clase" data-cy="clase" formControlName="clase" />
+          @if (claseRef.invalid && (claseRef.dirty || claseRef.touched)) {
+            <div>
+              @if (claseRef.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let disponibleRef = editForm.get('disponible')!;
+        <div class="mb-3 form-check">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            name="disponible"
+            id="field_disponible"
+            data-cy="disponible"
+            formControlName="disponible"
+          />
+          <label class="form-check-label" for="field_disponible" jhiTranslate="aerolineaVirtualApp.asiento.disponible">Disponible</label>
+          @if (disponibleRef.invalid && (disponibleRef.dirty || disponibleRef.touched)) {
+            <div>
+              @if (disponibleRef.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban" />&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving()"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save" />&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

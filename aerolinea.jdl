@@ -7,6 +7,7 @@ application {
  prodDatabaseType mysql
  buildTool maven
  }
+ entities *
 }
 
 entity Pasajero {
@@ -38,12 +39,12 @@ entity Asiento {
 }
 
 relationship OneToMany {
- Pasajero to Reserva
+ Pasajero{reserva} to Reserva{pasajero}
 }
 
 relationship ManyToOne {
- Reserva to Vuelo
- Reserva to Asiento
+ Reserva{vuelo} to Vuelo
+ Reserva{asiento} to Asiento
 }
 
 paginate Pasajero, Reserva, Vuelo, Asiento with pagination

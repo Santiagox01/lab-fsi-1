@@ -1,0 +1,154 @@
+<div>
+  <h2 id="page-heading" data-cy="ReservaHeading">
+    <span jhiTranslate="aerolineaVirtualApp.reserva.home.title">Reservas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading()">
+        <fa-icon icon="sync" [animation]="isLoading() ? 'spin' : undefined" />
+        <span jhiTranslate="aerolineaVirtualApp.reserva.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-reserva"
+        [routerLink]="['/reserva/new']"
+      >
+        <fa-icon icon="plus" />
+        <span jhiTranslate="aerolineaVirtualApp.reserva.home.createLabel">Create a new Reserva</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (reservas().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="aerolineaVirtualApp.reserva.home.notFound">No Reservas found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codigo">
+              <div class="d-flex">
+                <span jhiTranslate="aerolineaVirtualApp.reserva.codigo">Codigo</span>
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fechaReserva">
+              <div class="d-flex">
+                <span jhiTranslate="aerolineaVirtualApp.reserva.fechaReserva">Fecha Reserva</span>
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="estado">
+              <div class="d-flex">
+                <span jhiTranslate="aerolineaVirtualApp.reserva.estado">Estado</span>
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="vuelo.id">
+              <div class="d-flex">
+                <span jhiTranslate="aerolineaVirtualApp.reserva.vuelo">Vuelo</span>
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="asiento.id">
+              <div class="d-flex">
+                <span jhiTranslate="aerolineaVirtualApp.reserva.asiento">Asiento</span>
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pasajero.id">
+              <div class="d-flex">
+                <span jhiTranslate="aerolineaVirtualApp.reserva.pasajero">Pasajero</span>
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (reserva of reservas(); track trackId(reserva)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/reserva', reserva.id, 'view']">{{ reserva.id }}</a>
+              </td>
+              <td>{{ reserva.codigo }}</td>
+              <td>{{ reserva.fechaReserva | formatMediumDatetime }}</td>
+              <td>{{ reserva.estado }}</td>
+              <td>
+                @if (reserva.vuelo) {
+                  <div>
+                    <a [routerLink]="['/vuelo', reserva.vuelo.id, 'view']">{{ reserva.vuelo.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (reserva.asiento) {
+                  <div>
+                    <a [routerLink]="['/asiento', reserva.asiento.id, 'view']">{{ reserva.asiento.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (reserva.pasajero) {
+                  <div>
+                    <a [routerLink]="['/pasajero', reserva.pasajero.id, 'view']">{{ reserva.pasajero.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/reserva', reserva.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye" />
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/reserva', reserva.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt" />
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="button" (click)="delete(reserva)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times" />
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (reservas().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page(), totalItems: totalItems(), itemsPerPage: itemsPerPage() }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems()"
+          [page]="page()"
+          [pageSize]="itemsPerPage()"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        />
+      </div>
+    </div>
+  }
+</div>

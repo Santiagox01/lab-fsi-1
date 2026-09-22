@@ -1,0 +1,28 @@
+@if (pasajero) {
+  <form name="deleteForm" (ngSubmit)="confirmDelete(pasajero.id)">
+    <div class="modal-header">
+      <h4 class="modal-title" data-cy="pasajeroDeleteDialogHeading" jhiTranslate="entity.delete.title">Confirm delete operation</h4>
+    </div>
+
+    <div class="modal-body">
+      <jhi-alert-error />
+      <p
+        id="jhi-delete-pasajero-heading"
+        jhiTranslate="aerolineaVirtualApp.pasajero.delete.question"
+        [translateValues]="{ id: pasajero.id }"
+      >
+        Are you sure you want to delete Pasajero {{ pasajero.id }}?
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="cancel()">
+        <fa-icon icon="ban" />&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+      </button>
+
+      <button id="jhi-confirm-delete-pasajero" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+        <fa-icon icon="times" />&nbsp;<span jhiTranslate="entity.action.delete">Delete</span>
+      </button>
+    </div>
+  </form>
+}

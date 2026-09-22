@@ -1,0 +1,140 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-vuelo-heading" data-cy="VueloCreateUpdateHeading" jhiTranslate="aerolineaVirtualApp.vuelo.home.createOrEditLabel">
+        Create or edit a Vuelo
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="global.field.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let numeroVueloRef = editForm.get('numeroVuelo')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_numeroVuelo" jhiTranslate="aerolineaVirtualApp.vuelo.numeroVuelo">Numero Vuelo</label>
+          <input
+            type="text"
+            class="form-control"
+            name="numeroVuelo"
+            id="field_numeroVuelo"
+            data-cy="numeroVuelo"
+            formControlName="numeroVuelo"
+          />
+          @if (numeroVueloRef.invalid && (numeroVueloRef.dirty || numeroVueloRef.touched)) {
+            <div>
+              @if (numeroVueloRef.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let origenRef = editForm.get('origen')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_origen" jhiTranslate="aerolineaVirtualApp.vuelo.origen">Origen</label>
+          <input type="text" class="form-control" name="origen" id="field_origen" data-cy="origen" formControlName="origen" />
+          @if (origenRef.invalid && (origenRef.dirty || origenRef.touched)) {
+            <div>
+              @if (origenRef.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let destinoRef = editForm.get('destino')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_destino" jhiTranslate="aerolineaVirtualApp.vuelo.destino">Destino</label>
+          <input type="text" class="form-control" name="destino" id="field_destino" data-cy="destino" formControlName="destino" />
+          @if (destinoRef.invalid && (destinoRef.dirty || destinoRef.touched)) {
+            <div>
+              @if (destinoRef.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let fechaSalidaRef = editForm.get('fechaSalida')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_fechaSalida" jhiTranslate="aerolineaVirtualApp.vuelo.fechaSalida">Fecha Salida</label>
+          <div class="d-flex">
+            <input
+              id="field_fechaSalida"
+              data-cy="fechaSalida"
+              type="datetime-local"
+              class="form-control"
+              name="fechaSalida"
+              formControlName="fechaSalida"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (fechaSalidaRef.invalid && (fechaSalidaRef.dirty || fechaSalidaRef.touched)) {
+            <div>
+              @if (fechaSalidaRef.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!fechaSalidaRef.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >This field should be a date and time.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let fechaLlegadaRef = editForm.get('fechaLlegada')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_fechaLlegada" jhiTranslate="aerolineaVirtualApp.vuelo.fechaLlegada">Fecha Llegada</label>
+          <div class="d-flex">
+            <input
+              id="field_fechaLlegada"
+              data-cy="fechaLlegada"
+              type="datetime-local"
+              class="form-control"
+              name="fechaLlegada"
+              formControlName="fechaLlegada"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (fechaLlegadaRef.invalid && (fechaLlegadaRef.dirty || fechaLlegadaRef.touched)) {
+            <div>
+              @if (fechaLlegadaRef.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!fechaLlegadaRef.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >This field should be a date and time.</small
+              >
+            </div>
+          }
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban" />&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving()"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save" />&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

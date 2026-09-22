@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (asiento(); as asientoRef) {
+      <div>
+        <h2 data-cy="asientoDetailsHeading"><span jhiTranslate="aerolineaVirtualApp.asiento.detail.title">Asiento</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ asientoRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="aerolineaVirtualApp.asiento.numero">Numero</span></dt>
+          <dd>
+            <span>{{ asientoRef.numero }}</span>
+          </dd>
+          <dt><span jhiTranslate="aerolineaVirtualApp.asiento.clase">Clase</span></dt>
+          <dd>
+            <span>{{ asientoRef.clase }}</span>
+          </dd>
+          <dt><span jhiTranslate="aerolineaVirtualApp.asiento.disponible">Disponible</span></dt>
+          <dd>
+            <span>{{ asientoRef.disponible }}</span>
+          </dd>
+        </dl>
+
+        <button type="button" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left" />&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/asiento', asientoRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt" />&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>
